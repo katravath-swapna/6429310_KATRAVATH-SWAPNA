@@ -1,0 +1,93 @@
+/* Reset */
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+/* Header styles */
+#mainHeader {
+  background: linear-gradient(to right, #4CAF50, #81C784);
+  color: white;
+  padding: 20px;
+  text-align: center;
+  font-family: 'Poppins', sans-serif;
+}
+
+/* Nav list styling */
+.nav-list {
+  list-style: none;
+  display: flex;
+  justify-content: center;
+  gap: 15px;
+}
+.nav-list li a {
+  text-decoration: none;
+  color: white;
+}
+.nav-list li a:hover {
+  text-decoration: underline;
+}
+
+/* Event card */
+.eventCard {
+  background-color: #f1f1f1;
+  padding: 15px;
+  margin: 10px;
+  border: 1px solid #ddd;
+  border-radius: 10px;
+}
+
+/* Typography */
+body {
+  font-family: 'Poppins', sans-serif;
+  color: #333;
+  line-height: 1.6;
+}
+.event-section h2 {
+  text-align: center;
+  color: #444;
+}
+.registration-form label {
+  display: block;
+  margin: 10px 0;
+}
+#registerBtn {
+  background-color: #007BFF;
+  color: white;
+  padding: 10px 15px;
+  border: none;
+  cursor: pointer;
+}
+
+/* Table-like bulletin */
+.bulletin {
+  column-count: 2;
+  column-gap: 30px;
+  column-rule: 1px solid gray;
+  padding: 15px;
+}
+
+/* Link styles */
+a:link, a:visited {
+  color: white;
+}
+a:hover, a:active {
+  color: yellow;
+}
+
+/* Responsive */
+@media (max-width: 768px) {
+  .nav-list {
+    flex-direction: column;
+    align-items: center;
+  }
+
+  .eventCard {
+    margin: 5px;
+  }
+
+  body {
+    font-size: 14px;
+  }
+}

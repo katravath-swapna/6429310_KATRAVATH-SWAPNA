@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Local Community Event Portal</title>
+  <link rel="stylesheet" href="styles.css">
+  <script src="main.js" defer></script>
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;700&display=swap" rel="stylesheet">
+  <style>
+    /* Embedded style */
+    body {
+      background-color: #f9f9f9;
+    }
+  </style>
+</head>
+<body onload="pageLoaded()">
+  <header id="mainHeader">
+    <h1 style="color: red;">Welcome to Our Local Events!</h1> <!-- Inline Style -->
+    <nav>
+      <ul class="nav-list">
+        <li><a href="#">Home</a></li>
+        <li><a href="#">Events</a></li>
+        <li><a href="#">Register</a></li>
+      </ul>
+    </nav>
+  </header>
+
+  <section class="event-section">
+    <h2>Upcoming Events</h2>
+    <div id="eventList"></div>
+  </section>
+
+  <section class="registration-form">
+    <h3>Register for an Event</h3>
+    <form id="eventForm">
+      <label>Name: <input type="text" name="name" required></label>
+      <label>Email: <input type="email" name="email" required></label>
+      <label>Event:
+        <select name="event">
+          <option value="Music Night">Music Night</option>
+          <option value="Yoga Session">Yoga Session</option>
+        </select>
+      </label>
+      <button type="submit" id="registerBtn">Register</button>
+    </form>
+    <p id="formMessage"></p>
+  </section>
+
+  <section class="news">
+    <h3>Community News</h3>
+    <div class="bulletin">
+      <p>Stay tuned for exciting updates and local initiatives.</p>
+      <p>New events are added every week!</p>
+    </div>
+  </section>
+</body>
+</html>

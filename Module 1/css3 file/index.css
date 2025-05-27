@@ -1,0 +1,101 @@
+/* General Reset */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+/* Body Styling */
+body {
+    font-family: 'Segoe UI', sans-serif;
+    background: #f0f8ff url('background.jpg') no-repeat center center fixed;
+    background-size: cover;
+    padding: 20px;
+}
+
+/* Navigation */
+.nav-menu {
+    list-style-type: none;
+    background-color: #333;
+    overflow: hidden;
+}
+.nav-menu li {
+    display: inline-block;
+    padding: 10px 15px;
+}
+.nav-menu li a {
+    color: white;
+    text-decoration: none;
+}
+.nav-menu li a:hover {
+    background-color: #555;
+}
+
+/* Image Styling */
+.event-img {
+    width: 150px;
+    height: auto;
+    border: 2px solid #555;
+}
+
+/* Table Styling */
+table {
+    border-collapse: collapse;
+    margin: 20px 0;
+    width: 100%;
+    text-align: center;
+}
+th, td {
+    padding: 10px;
+    border: 1px solid #ccc;
+}
+tr:nth-child(even) {
+    background-color: #f9f9f9;
+}
+
+/* Highlighted Header */
+.highlight {
+    background: linear-gradient(to right, #ffcc70, #ff8c00);
+    color: black;
+    padding: 10px;
+}
+
+/* Form Styling */
+form {
+    margin-top: 30px;
+    background: #fff;
+    padding: 20px;
+    border-radius: 8px;
+}
+input, select, textarea {
+    width: 100%;
+    padding: 10px;
+    margin-top: 5px;
+}
+input:focus, textarea:focus {
+    outline: 2px solid #007BFF;
+}
+
+/* Responsive Layout */
+@media screen and (max-width: 768px) {
+    .nav-menu li {
+        display: block;
+        text-align: center;
+    }
+
+    .event-img {
+        width: 100%;
+    }
+
+    body {
+        font-size: 90%;
+    }
+}
+
+/* Footer */
+footer {
+    text-align: center;
+    padding: 20px;
+    background-color: #eee;
+    margin-top: 40px;
+}

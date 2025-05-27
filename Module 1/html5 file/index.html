@@ -1,0 +1,193 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Local Community Event Portal</title>
+
+    <!-- Link to external CSS -->
+    <link rel="stylesheet" href="styles.css">
+
+    <!-- Internal CSS for specific styling -->
+    <style>
+        #welcomeBanner {
+            background-color: lightblue;
+            padding: 20px;
+            text-align: center;
+        }
+        .highlight {
+            background-color: yellow;
+            font-weight: bold;
+        }
+    </style>
+</head>
+<body>
+
+    <!-- Navigation -->
+    <nav>
+        <ul class="nav-menu">
+            <li><a href="#home">Home</a></li>
+            <li><a href="#events">Events</a></li>
+            <li><a href="#contact">Contact</a></li>
+            <li><a href="help.html" target="_blank">Help</a></li>
+        </ul>
+    </nav>
+
+    <!-- Main Section -->
+    <main>
+
+        <!-- Welcome Banner -->
+        <div id="welcomeBanner">
+            <h1 style="color: red;">Welcome to the Community Event Portal</h1>
+            <p>Special Offer: <span style="color: red; font-weight: bold;">Free Entry</span> for the first 50 visitors!</p>
+        </div>
+
+        <!-- Events Section -->
+        <section id="events">
+            <h2 class="highlight">Upcoming Events</h2>
+
+            <!-- Image Gallery Table -->
+            <table>
+                <caption>Gallery from Previous Events</caption>
+                <tr>
+                    <td><img src="img1.jpg" alt="Event 1" title="Event 1" class="event-img"></td>
+                    <td><img src="img2.jpg" alt="Event 2" title="Event 2" class="event-img"></td>
+                    <td><img src="img3.jpg" alt="Event 3" title="Event 3" class="event-img"></td>
+                </tr>
+                <tr>
+                    <td><img src="img4.jpg" alt="Event 4" title="Event 4" class="event-img"></td>
+                    <td><img src="img5.jpg" alt="Event 5" title="Event 5" class="event-img"></td>
+                    <td><img src="img6.jpg" alt="Event 6" title="Event 6" class="event-img"></td>
+                </tr>
+            </table>
+
+            <!-- Registration Form -->
+            <form onsubmit="showConfirmation(event)">
+                <h3>Register for an Event</h3>
+                <label>Name: <input type="text" name="name" required autofocus placeholder="Your Name"></label><br><br>
+                <label>Email: <input type="email" name="email" required placeholder="you@example.com"></label><br><br>
+                <label>Phone: <input type="tel" id="phone" onblur="validatePhone()" required></label><br><br>
+                <label>Date: <input type="date" name="date" required></label><br><br>
+                <label>Event Type:
+                    <select id="eventType" onchange="displayFee()" required>
+                        <option value="">--Choose--</option>
+                        <option value="music">Music Show</option>
+                        <option value="sports">Sports Day</option>
+                        <option value="tech">Tech Meetup</option>
+                    </select>
+                </label><br><br>
+                <label>Message: <textarea id="message" onkeyup="countChars()" placeholder="Your message here..."></textarea></label><br>
+                <p>Characters typed: <span id="charCount">0</span></p>
+                <output id="confirmation"></output><br><br>
+                <button type="submit" onclick="savePreference()">Submit</button>
+                <button type="button" onclick="clearPreferences()">Clear Preferences</button>
+            </form>
+
+            <!-- Video Invite -->
+            <video width="320" controls oncanplay="videoReady()">
+                <source src="invite.mp4" type="video/mp4">
+                Your browser does not support the video tag.
+            </video>
+            <p id="videoStatus"></p>
+
+            <!-- Geolocation -->
+            <button onclick="getLocation()">Find Nearby Events</button>
+            <p id="location"></p>
+
+        </section>
+
+        <!-- Contact Section -->
+        <section id="contact">
+            <h2>Contact Us</h2>
+            <p>Email: community@events.com</p>
+        </section>
+
+    </main>
+
+    <!-- Footer -->
+    <footer>
+        <p>&copy; 2025 Local Community Events</p>
+    </footer>
+
+    <!-- JavaScript -->
+    <script>
+        window.onbeforeunload = function () {
+            return "Are you sure you want to leave without submitting the form?";
+        };
+
+        function showConfirmation(e) {
+            e.preventDefault();
+            document.getElementById("confirmation").value = "Registration submitted!";
+        }
+
+        function validatePhone() {
+            let phone = document.getElementById("phone").value;
+            if (!/^\d{10}$/.test(phone)) {
+                alert("Please enter a valid 10-digit phone number.");
+            }
+        }
+
+        function displayFee() {
+            let feeMap = {
+                music: "$10",
+                sports: "$5",
+                tech: "$15"
+            };
+            let eventType = document.getElementById("eventType").value;
+            if (eventType) {
+                alert("Selected event fee: " + feeMap[eventType]);
+            }
+        }
+
+        function countChars() {
+            let text = document.getElementById("message").value;
+            document.getElementById("charCount").innerText = text.length;
+        }
+
+        function videoReady() {
+            document.getElementById("videoStatus").innerText = "Video ready to play!";
+        }
+
+        function savePreference() {
+            let selected = document.getElementById("eventType").value;
+            localStorage.setItem("preferredEvent", selected);
+        }
+
+        function clearPreferences() {
+            localStorage.clear();
+            sessionStorage.clear();
+            alert("Preferences cleared.");
+        }
+
+        function getLocation() {
+            if (navigator.geolocation) {
+                navigator.geolocation.getCurrentPosition(
+                    function (position) {
+                        document.getElementById("location").innerText =
+                            `Latitude: ${position.coords.latitude}, Longitude: ${position.coords.longitude}`;
+                    },
+                    function (error) {
+                        document.getElementById("location").innerText =
+                            "Geolocation error: " + error.message;
+                    },
+                    {
+                        enableHighAccuracy: true,
+                        timeout: 10000
+                    }
+                );
+            } else {
+                alert("Geolocation not supported.");
+            }
+        }
+
+        // Load preference
+        window.onload = function () {
+            let preferred = localStorage.getItem("preferredEvent");
+            if (preferred) {
+                document.getElementById("eventType").value = preferred;
+            }
+        };
+    </script>
+</body>
+</html>
+
